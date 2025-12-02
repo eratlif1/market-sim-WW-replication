@@ -25,7 +25,7 @@ def sample_players(profile, players):
     # profile must contain a set of key-value pairs.
     # iterate over all key-value pairs in the dict object "profile"
     # role is the key, probs is the value
-    for role, probs in profile.iteritems():
+    for role, probs in profile.items():
         # each "probs" value is a list. *probs.items performs "splat" on this list.
         # splat replaces a list with the sequence of separate items in that list.
         # zip takes a set of k lists of length n, and returns a list n of k-tuples, where the ith
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     # %02 means to pad the number with leading zeros up to length 2
     fmt = "%0" + str(len(str(args.num_samples - 1))) + "d"
     # iterates from 0 to num_samples - 1
-    for i in xrange(args.num_samples):
+    for i in range(args.num_samples):
         # example: sim_dir = /my_output_dir/02
         sim_dir = path.join(args.directory, fmt % i)
         simspec['assignment'] = sample_players(profile, role_counts)
