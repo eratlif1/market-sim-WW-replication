@@ -36,6 +36,12 @@ def get_parser():
         help='The number of simulations per mixture.'
     )
     parser.add_argument(
+        '--processes', 
+        type=int, 
+        default=10, 
+        help='The number of mixtures to run for in parallel.'
+    )
+    parser.add_argument(
         '--directory',
         type=Path,
         default=Path('./WWW/'),
