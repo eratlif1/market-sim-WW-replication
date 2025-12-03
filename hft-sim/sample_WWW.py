@@ -139,7 +139,7 @@ def run_hft_sim(folder: Path, num_obs: int, script_dir: Path) -> None:
     ]
 
     # print(f">> Starting {folder} ...", flush=True)
-    print(f"{cmd[0]} {cmd[1]} {cmd[1]}", flush=True)
+    print(f"{cmd[0]} {cmd[1]} {cmd[2]}", flush=True)
     result = subprocess.run(
         cmd,
         cwd=script_dir,                 # matches cd "$LOC" in your script
