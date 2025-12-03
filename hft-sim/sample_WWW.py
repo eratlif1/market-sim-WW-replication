@@ -133,7 +133,7 @@ def run_hft_sim(folder: Path, num_obs: int, script_dir: Path) -> None:
     """
     # Direct call to run-local-hft.sh with explicit jar
     cmd = [
-        str(script_dir / "run-hft.sh"),
+        "./run-hft.sh",
         str(folder),
         str(num_obs),
     ]
