@@ -129,13 +129,11 @@ def sample_players(profile, players):
 
 def run_hft_sim(folder: Path, num_obs: int, script_dir: Path) -> None:
     """
-    Call your existing run-local-hft.sh for a given folder.
     Equivalent to: ./run-hft.sh "$folder" num_obs
     """
     # Direct call to run-local-hft.sh with explicit jar
     cmd = [
-        str(script_dir / "run-local-hft.sh"),
-        str(script_dir / "dist" / "hft.jar"),
+        str(script_dir / "run-hft.sh"),
         str(folder),
         str(num_obs),
     ]
