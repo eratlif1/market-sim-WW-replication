@@ -179,6 +179,7 @@ def run_simulations(
     with multiprocessing.Pool(processes=processes, maxtasksperchild=1) as pool:
         pool.map(
             partial(
+                run_hft_sim,
                 num_obs=num_obs,
                 script_dir=script_dir,
             ),
