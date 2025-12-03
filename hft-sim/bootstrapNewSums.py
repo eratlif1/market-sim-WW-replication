@@ -21,6 +21,7 @@ inventory = []
 spreadsEarned = []
 spreadProfit = []
 positioningProfit = []
+bgArrivals = []
 
 spreadString = "spreads_mean_markets"
 timeString = "exectime_mean"
@@ -36,6 +37,7 @@ inventoryString = "sum_absv_inventory_mm"
 spreadsEarnedString = "total_spreads_earned_mm"
 spreadProfitString = "sum_spread_profit_mm"
 positioningProfitString = "sum_positioning_profit_mm"
+bgArrivalsString = "background_arrivals"
 
 myOutputStrings = ["spread","spread_L","spread_H","executionTime","executionTime_L","executionTime_H","numTrades","numTrades_L","numTrades_H","mmTrades","mmTrades_L","mmTrades_H","welfare","welfare_L","welfare_H","bgSurplus","bgSurplus_L","bgSurplus_H","mmProfit","mmProfit_L","mmProfit_H","spreadIfDef","spreadIfDef_L","spreadIfDef_H","midquoteRmsVsEst","midquoteRmsVsEst_L","midquoteRmsVsEst_H","minShade","minShade_L","minShade_H","fracEstInSpread","fracEstInSpread_L","fracEstInSpread_H","mmInventory","mmInventory_L","mmInventory_H","mmSpreadsEarned","mmSpreadsEarned_L","mmSpreadsEarned_H","mmSpreadProfit","mmSpreadProfit_L","mmSpreadProfit_H","mmPositioningProfit","mmPositioningProfit_L","mmPositioningProfit_H"]
 
@@ -57,8 +59,11 @@ def getValuesFromFolder(folderName):
             with open(fileName) as obsFile:
                 jsonObs = json.load(obsFile)
 
-            spread.append(jsonObs[featureString][spreadString])
-            tempTime = jsonObs[featureString][timeString]
+            spread.append(float(jsonObs[featureString][spreadString]))
+            try:
+                tempTime = jsonObs[featureString][timeString]
+            except KeyError:
+                tempTime = np.nan
             if not math.isnan(float(tempTime)):
                 time.append(tempTime)
                 pass
@@ -79,55 +84,58 @@ def getValuesFromFolder(folderName):
             spreadsEarned.append(jsonObs[featureString][spreadsEarnedString])
             spreadProfit.append(jsonObs[featureString][spreadProfitString])
             positioningProfit.append(jsonObs[featureString][positioningProfitString])
+            bgArrivals.append(jsonObs[featureString][bgArrivalsString])
             pass
         pass
     pass
 
 def printMeans():
     myPlaces = 3
-    print ""
-    print "mean spread: " + str(round(np.mean(spread), myPlaces))
-    print "mean execution time: " + str(round(np.mean(time), myPlaces))
-    print "mean num trades: " + str(round(np.mean(trade), myPlaces))
-    print "mean num MM trades: " + str(round(np.mean(mmTrade), myPlaces))
-    print "mean social welfare: " + str(round(np.mean(welfare), myPlaces))
-    print "mean bg trader surplus: " + str(round(np.mean(bgSurplus), myPlaces))
-    print "mean MM profit: " + str(round(np.mean(mmProfit), myPlaces))
-    print "mean spread where defined: " + str(round(np.mean(spreadIfDefined), myPlaces))
-    print "mean rms midquote vs estimate: " + str(round(np.mean(rms), myPlaces))
-    print "mean min shade from estimate: " + str(round(np.mean(minShade), myPlaces))
-    print "mean fraction estimate in spread: " + str(round(np.mean(frac), myPlaces))
-    print "mean sum absval MM inventory: " + str(round(np.mean(inventory), myPlaces))
-    print "mean total MM spreads earned: " + str(round(np.mean(spreadsEarned), myPlaces))
-    print "mean sum MM spread profit: " + str(round(np.mean(spreadProfit), myPlaces))
-    print "mean sum MM positioning profit: " + str(round(np.mean(positioningProfit), myPlaces))
+    print("")
+    print("mean spread: " + str(round(np.mean(spread), myPlaces)))
+    print("mean execution time: " + str(round(np.mean(time), myPlaces)))
+    print("mean num trades: " + str(round(np.mean(trade), myPlaces)))
+    print("mean num MM trades: " + str(round(np.mean(mmTrade), myPlaces)))
+    print("mean social welfare: " + str(round(np.mean(welfare), myPlaces)))
+    print("mean bg trader surplus: " + str(round(np.mean(bgSurplus), myPlaces)))
+    print("mean MM profit: " + str(round(np.mean(mmProfit), myPlaces)))
+    print("mean spread where defined: " + str(round(np.mean(spreadIfDefined), myPlaces)))
+    print("mean rms midquote vs estimate: " + str(round(np.mean(rms), myPlaces)))
+    print("mean min shade from estimate: " + str(round(np.mean(minShade), myPlaces)))
+    print("mean fraction estimate in spread: " + str(round(np.mean(frac), myPlaces)))
+    print("mean sum absval MM inventory: " + str(round(np.mean(inventory), myPlaces)))
+    print("mean total MM spreads earned: " + str(round(np.mean(spreadsEarned), myPlaces)))
+    print("mean sum MM spread profit: " + str(round(np.mean(spreadProfit), myPlaces)))
+    print("mean sum MM positioning profit: " + str(round(np.mean(positioningProfit), myPlaces)))
+    print("mean bg arrivals: " + str(round(np.mean(bgArrivals), myPlaces)))
     pass
 
 def printSds():
     myPlaces = 3
-    print ""
-    print "stdev spread: " + str(round(np.std(spread), myPlaces))
-    print "stdev execution time: " + str(round(np.std(time), myPlaces))
-    print "stdev num trades: " + str(round(np.std(trade), myPlaces))
-    print "stdev num MM trades: " + str(round(np.std(mmTrade), myPlaces))
-    print "stdev social welfare: " + str(round(np.std(welfare), myPlaces))
-    print "stdev bg trader surplus: " + str(round(np.std(bgSurplus), myPlaces))
-    print "stdev MM profit: " + str(round(np.std(mmProfit), myPlaces))
-    print "stdev spread where defined: " + str(round(np.std(spreadIfDefined), myPlaces))
-    print "stdev rms midquote vs estimate: " + str(round(np.std(rms), myPlaces))
-    print "stdev min shade from estimate: " + str(round(np.std(minShade), myPlaces))
-    print "stdev fraction estimate in spread: " + str(round(np.std(frac), myPlaces))
-    print "stdev sum absval MM inventory: " + str(round(np.std(inventory), myPlaces))
-    print "stdev total MM spreads earned: " + str(round(np.std(spreadsEarned), myPlaces))
-    print "stdev sum MM spread profit: " + str(round(np.std(spreadProfit), myPlaces))
-    print "stdev sum MM positioning profit: " + str(round(np.std(positioningProfit), myPlaces))
+    print("")
+    print("stdev spread: " + str(round(np.std(spread), myPlaces)))
+    print("stdev execution time: " + str(round(np.std(time), myPlaces)))
+    print("stdev num trades: " + str(round(np.std(trade), myPlaces)))
+    print("stdev num MM trades: " + str(round(np.std(mmTrade), myPlaces)))
+    print("stdev social welfare: " + str(round(np.std(welfare), myPlaces)))
+    print("stdev bg trader surplus: " + str(round(np.std(bgSurplus), myPlaces)))
+    print("stdev MM profit: " + str(round(np.std(mmProfit), myPlaces)))
+    print("stdev spread where defined: " + str(round(np.std(spreadIfDefined), myPlaces)))
+    print("stdev rms midquote vs estimate: " + str(round(np.std(rms), myPlaces)))
+    print("stdev min shade from estimate: " + str(round(np.std(minShade), myPlaces)))
+    print("stdev fraction estimate in spread: " + str(round(np.std(frac), myPlaces)))
+    print("stdev sum absval MM inventory: " + str(round(np.std(inventory), myPlaces)))
+    print("stdev total MM spreads earned: " + str(round(np.std(spreadsEarned), myPlaces)))
+    print("stdev sum MM spread profit: " + str(round(np.std(spreadProfit), myPlaces)))
+    print("stdev sum MM positioning profit: " + str(round(np.std(positioningProfit), myPlaces)))
+    print("stdev bg arrivals: " + str(round(np.std(bgArrivals), myPlaces)))
     pass
 
 # print 95% confidence interval for each mean:
 # that is, 2.5th percentile and 97.5th percentile for each mean
 def printBootstrapMeanIntervals(mmCount):
     myPlaces = 3
-    print ""
+    print("")
     spreadCI = printBootstrapMeanInterval(spread, "mean spread")
     myOutput.append(round(np.mean(spread), myPlaces))
     myOutput.append(spreadCI[0])
@@ -207,15 +215,15 @@ def printBootstrapMeanIntervals(mmCount):
     pass
 
 def printForCsv():
-    print ','.join(map(str, myOutputStrings))
-    print ','.join(map(str, myOutput))
+    print(','.join(map(str, myOutputStrings)))
+    print(','.join(map(str, myOutput)))
     pass
 
 def printBootstrapStdevInterval(myList, myName):
     myPlaces = 3
     twoPointFivePerc = round(bootstrapStdevPercentile(myList, 2.5), myPlaces)
     ninetySevenPointFivePerc = round(bootstrapStdevPercentile(myList, 97.5), myPlaces)
-    print myName + " 95% confidence range for stdev: [" + str(twoPointFivePerc) + ", " + str(ninetySevenPointFivePerc) + "]" 
+    print(myName + " 95% confidence range for stdev: [" + str(twoPointFivePerc) + ", " + str(ninetySevenPointFivePerc) + "]")
     pass
 
 def bootstrapStdevPercentile(myList, perc):
@@ -231,7 +239,7 @@ def printBootstrapMeanInterval(myList, myName):
     myPlaces = 3
     twoPointFivePerc = round(bootstrapMeanPercentile(myList, 2.5), myPlaces)
     ninetySevenPointFivePerc = round(bootstrapMeanPercentile(myList, 97.5), myPlaces)
-    print myName + " 95% confidence range for mean: [" + str(twoPointFivePerc) + ", " + str(ninetySevenPointFivePerc) + "]" 
+    print(myName + " 95% confidence range for mean: [" + str(twoPointFivePerc) + ", " + str(ninetySevenPointFivePerc) + "]")
     return [twoPointFivePerc, ninetySevenPointFivePerc]
 
 def bootstrapMeanPercentile(myList, perc):
@@ -251,18 +259,18 @@ def getSample(myList):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print "must specify folder"
-        print "must specify MM count"
+        print("must specify folder")
+        print("must specify MM count")
         sys.exit(1)
     folderName = sys.argv[1]
     mmCount = int(float(sys.argv[2]))
     if not os.path.isdir(folderName):
-        print "not a directory"
+        print("not a directory")
         sys.exit(1)        
     getValuesFromFolder(folderName)
-    print "from folder: " + folderName
-    print "bootstrap samples: " + str(bootstrapSamples)
-    print "files count: " + str(len(spread))
+    print("from folder: " + folderName)
+    print("bootstrap samples: " + str(bootstrapSamples))
+    print("files count: " + str(len(spread)))
     printMeans()
     printSds()
     printBootstrapMeanIntervals(mmCount)
