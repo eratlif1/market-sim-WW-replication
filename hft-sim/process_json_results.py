@@ -149,6 +149,9 @@ def main(
                             val = jsonObs[featureString][key]
                         else:
                             val = None
+                    if val == 'Infinity':
+                        print(f"{key} value {val} in {fileName} results")
+                        val = None
                     d[col] = val
 
                 d['totalSurplus'] = d['bgSurplus'] + d[f'{other_trader_type}Profit']
