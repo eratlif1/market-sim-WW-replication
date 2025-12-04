@@ -168,7 +168,9 @@ def main(
     df = pd.concat(dfs)
     df.sort_values(by='SIP_latency', ascending=True, inplace=True)
     # NOTE: Current naming logic assumes num. of mixtures and runs are constant across configs
-    df.to_parquet(out / f'{model}_{mixtures}x{runs}_simulation_results.parq')
+    out_path = out / f'{model}_{mixtures}x{runs}_simulation_results.parq'
+    df.to_parquet(out_path)
+    print(f"Saved output to {out_path}")
     # return df
 
 
