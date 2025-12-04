@@ -38,6 +38,12 @@ def get_parser():
         default='WWW',
         help="Model",
     )
+    parser.add_argument(
+        "--envs",
+        type=str,
+        default='A,B,C',
+        help="Environments to process results from",
+    )
     return parser
 
 spreadString = "spreads_mean_markets"
@@ -84,7 +90,9 @@ def main(
     dir: Path,
     out: Path,
     model: str,
+    envs: str,
 ):
+    envs = envs.split(',')
     model = str.upper(model)
     dfs = []
 
@@ -109,7 +117,11 @@ def main(
             other_trader_num = int(configuration.split('MM')[-1])
             delta = 0
             CDAnum = 1
-
+            env = configuration.split('_')[0].split('v')[-1]
+        
+        if env not in envs:
+            continue
+        
         mixtures = 0
         for runFolder in glob.glob(f'{configFolder}/*'):
             # print('runFolder', runFolder)
@@ -141,6 +153,7 @@ def main(
                 d[other_trader_type] = other_trader_num
                 d['SIP_latency'] = delta
                 d['mixture'] = mixture
+                d['env'] = env
                 data.append(d)
                 runs += 1
         df = pd.DataFrame(data)
