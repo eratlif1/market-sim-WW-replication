@@ -95,6 +95,7 @@ def main(
     envs = envs.split(',')
     model = str.upper(model)
     dfs = []
+    out.mkdir(exist_ok=True, parents=True)
 
     dir = str(dir)
     print(dir)
