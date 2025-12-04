@@ -119,7 +119,7 @@ def main(
             CDAnum = 1
             env = configuration.split('_')[0].split('v')[-1]
         
-        if env not in envs:
+        if env[0] not in envs:
             print(f"Skipping env {env}")
             continue
         
