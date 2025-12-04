@@ -107,7 +107,6 @@ def main(
         other_trader_type = 'mm'
         
     for configFolder in glob.glob(f'{dir}/{base_config}*'):
-        print(f"{datetime.datetime.now()} processing results from {configFolder}")
         data = []
         configuration = configFolder.split('/')[-1]
         if model == 'WW':
@@ -121,7 +120,10 @@ def main(
             env = configuration.split('_')[0].split('v')[-1]
         
         if env not in envs:
+            print(f"Skipping env {env}")
             continue
+        
+        print(f"{datetime.datetime.now()} processing results from {configFolder}")
         
         mixtures = 0
         for runFolder in glob.glob(f'{configFolder}/*'):
