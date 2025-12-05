@@ -106,7 +106,7 @@ N_66_noMM['C'][12] = {
 }
 
 # 19 - C24 - 1000*: 0.995, 1500dagg: 0.005
-N_66_noMM['C'][12] = {
+N_66_noMM['C'][24] = {
     "background":
     {
         "ZIRP:Rmin_0_Rmax_1000_thresh_0.8": 0.995,
