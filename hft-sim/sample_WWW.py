@@ -64,7 +64,6 @@ def get_parser():
 
 # profile.json has:
 # profile: a Python dictionary object from the entire profile.json file
-rng = None
 
 def main(
     directory: Path,
@@ -76,7 +75,6 @@ def main(
 ):
     base_dir = Path(directory)
     envs = [i for i in envs.split(',')]
-    global rng
     rng = np.random.default_rng(seed=seed)
     dirs = []
     for env, simspec in WWW_model_configs.www_N66_noMM.items():
@@ -102,7 +100,7 @@ def main(
                 sample_str = fmt % i
                 sim_dir = dir / sample_str
                 sim_dir.mkdir(exist_ok=True, parents=True)
-                t_spec['assignment'] = sample_players(profile, role_counts)
+                t_spec['assignment'] = sample_players(profile, role_counts, rng=rng)
                 with open(path.join(sim_dir, 'simulation_spec.json'), 'w') as f:
                     # write out object simspec to output stream f
                     json.dump(t_spec, f)
@@ -114,7 +112,7 @@ def main(
 
 # profile is a dict object
 # players is a list of how many players there are per role
-def sample_players(profile, players):
+def sample_players(profile, players, rng):
     assignment = {}
     # profile must contain a set of key-value pairs.
     # iterate over all key-value pairs in the dict object "profile"
