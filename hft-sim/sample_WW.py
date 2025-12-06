@@ -209,7 +209,7 @@ def run_simulations(
         print(f"No matching folders found in {base_dir}", file=sys.stderr)
         sys.exit(1)
 
-    with multiprocessing.Pool(processes=processes, maxtasksperchild=1) as pool:
+    with multiprocessing.Pool(processes=processes, maxtasksperchild=100) as pool:
         pool.map(
             partial(
                 run_hft_sim,
