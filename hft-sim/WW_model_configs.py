@@ -77,7 +77,7 @@ environments = {}
 env_test = {}
 env_test['CDA'] = env_1_1ex
 
-environments['env_1'] = env_1
-environments['env_2'] = env_2
-environments['env_3'] = env_3
-environments['env_test'] = env_test
+environments['1'] = env_1
+environments['2'] = env_2
+environments['3'] = env_3
+environments['test'] = env_test
