@@ -55,97 +55,90 @@ env_1['2M LA'] = {}
 # }
 #Env 1 rows: 
 # 2 - CDA 0
-env_1['CDA'][0] = {
-    "background":
-    {
-        "ZIRP:Rmin_1000_Rmax_2000_thresh_.4": 0.507,
-        "ZIRP:Rmin_0_Rmax_2500_thresh_.4": 0.493
-    }
-}
 
 env_1['CDA'][0] = {
     0.507: profiles['2000_ddagger'],
     0.493: profiles['2500_circle'],
 }
 # 3 - 2M 0
-env_1['2M'][0] = {
-    1.0: profiles['2500_circle'],
-}
-# 7 - 2M 100
-env_1['2M'][100] = {
-0.602: profiles['1000_ddagger'],
-0.239: profiles['2000_ddagger'],
-0.159: profiles['2500_circle'],
-}
-# 8 - 2M LA 100
-env_1['2M LA'][100] = {
-0.237: profiles['1000_ddagger'],
-0.537: profiles['2000_ddagger'],
-0.226: profiles['2500_circle'],
-}
-# 10 - 2M 200
-env_1['2M'][200] = {
-0.381: profiles['1000_ddagger'],
-0.338: profiles['2000_ddagger'],
-0.281: profiles['2500_circle'],
-}
-# 11 - 2M LA 200
-env_1['2M LA'][200] = {
-0.679: profiles['2000_ddagger'],
-0.321: profiles['2500_circle'],
-}
-# 14 - 2M 300
-env_1['2M'][300] = {
-0.692: profiles['1000_ddagger'],
-0.036: profiles['2000_ddagger'],
-0.272: profiles['2500_circle'],
-}
-# 15 - 2M LA 300
-env_1['2M LA'][300] = {
-0.655: profiles['2000_ddagger'],
-0.345: profiles['2500_circle'],
-}
-# 19 - 2M 400
-env_1['2M'][400] = {
-0.595: profiles['2000_ddagger'],
-0.405: profiles['2500_circle'],
-}
-# 20 - 2M LA 400
-env_1['2M LA'][400] = {
-0.470: profiles['1000_ddagger'],
-0.258: profiles['2000_ddagger'],
-0.272: profiles['2500_circle'],
-}
-# 25 - 2M 600
-env_1['2M'][600] = {
-0.810: profiles['1000_ddagger'],
-0.190: profiles['2500_circle'],
-}
-# 26 - 2M LA 600
-env_1['2M LA'][600] = {
-0.029: profiles['1000_dstar'],
-0.971: profiles['2500_circle'],
-}
-# 32 - 2M 700
-env_1['2M'][700] = {
-0.739: profiles['1000_ddagger'],
-0.261: profiles['2500_circle'],
-}
-# 33 - 2M LA 700
-env_1['2M LA'][700] = {
-0.006: profiles['1000_ddagger'],
-0.826: profiles['2000_ddagger'],
-0.168: profiles['2500_circle'],
-}
-# 36 - 2M 900
-env_1['2M'][900] = {
-1.0:   profiles['2500_circle'],
-}
-# 39 - 2M LA 900
-env_1['2M LA'][900] = {
-0.131: profiles['1000_ddagger'],
-0.869: profiles['2500_circle'],
-}
+# env_1['2M'][0] = {
+#     1.0: profiles['2500_circle'],
+# }
+# # 7 - 2M 100
+# env_1['2M'][100] = {
+# 0.602: profiles['1000_ddagger'],
+# 0.239: profiles['2000_ddagger'],
+# 0.159: profiles['2500_circle'],
+# }
+# # 8 - 2M LA 100
+# env_1['2M LA'][100] = {
+# 0.237: profiles['1000_ddagger'],
+# 0.537: profiles['2000_ddagger'],
+# 0.226: profiles['2500_circle'],
+# }
+# # 10 - 2M 200
+# env_1['2M'][200] = {
+# 0.381: profiles['1000_ddagger'],
+# 0.338: profiles['2000_ddagger'],
+# 0.281: profiles['2500_circle'],
+# }
+# # 11 - 2M LA 200
+# env_1['2M LA'][200] = {
+# 0.679: profiles['2000_ddagger'],
+# 0.321: profiles['2500_circle'],
+# }
+# # 14 - 2M 300
+# env_1['2M'][300] = {
+# 0.692: profiles['1000_ddagger'],
+# 0.036: profiles['2000_ddagger'],
+# 0.272: profiles['2500_circle'],
+# }
+# # 15 - 2M LA 300
+# env_1['2M LA'][300] = {
+# 0.655: profiles['2000_ddagger'],
+# 0.345: profiles['2500_circle'],
+# }
+# # 19 - 2M 400
+# env_1['2M'][400] = {
+# 0.595: profiles['2000_ddagger'],
+# 0.405: profiles['2500_circle'],
+# }
+# # 20 - 2M LA 400
+# env_1['2M LA'][400] = {
+# 0.470: profiles['1000_ddagger'],
+# 0.258: profiles['2000_ddagger'],
+# 0.272: profiles['2500_circle'],
+# }
+# # 25 - 2M 600
+# env_1['2M'][600] = {
+# 0.810: profiles['1000_ddagger'],
+# 0.190: profiles['2500_circle'],
+# }
+# # 26 - 2M LA 600
+# env_1['2M LA'][600] = {
+# 0.029: profiles['1000_dstar'],
+# 0.971: profiles['2500_circle'],
+# }
+# # 32 - 2M 700
+# env_1['2M'][700] = {
+# 0.739: profiles['1000_ddagger'],
+# 0.261: profiles['2500_circle'],
+# }
+# # 33 - 2M LA 700
+# env_1['2M LA'][700] = {
+# 0.006: profiles['1000_ddagger'],
+# 0.826: profiles['2000_ddagger'],
+# 0.168: profiles['2500_circle'],
+# }
+# # 36 - 2M 900
+# env_1['2M'][900] = {
+# 1.0:   profiles['2500_circle'],
+# }
+# # 39 - 2M LA 900
+# env_1['2M LA'][900] = {
+# 0.131: profiles['1000_ddagger'],
+# 0.869: profiles['2500_circle'],
+# }
 
 environments['1'] = env_1
 
