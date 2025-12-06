@@ -82,6 +82,7 @@ def main(
     
     dirs = []
     for env in envs:
+        env_key = f'env_{env}'
         trader_profiles = convert_environments(WW_trader_profiles.environments, WW_trader_profiles.profiles)
         for key, simspec in WW_model_configs.environments[env].items():
 
@@ -95,7 +96,7 @@ def main(
                 # iterates from 0 to num_samples - 1
                 # e.g., if there are 100 samples, length 09-99 is 2
                 fmt = "%0" + str(len(str(num_samples - 1))) + "d"
-                dir = base_dir / f'CDA{lat_spec["configuration"]["CDA"]}_LA{lat_spec["role_counts"]["LA"]}_delta{lat}'
+                dir = base_dir / env_key / f'CDA{lat_spec["configuration"]["CDA"]}_LA{lat_spec["role_counts"]["LA"]}_delta{lat}'
                 dirs.append(dir)
                 for i in range(num_samples):
                     # example: sim_dir = /my_output_dir/02
