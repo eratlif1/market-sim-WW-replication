@@ -82,11 +82,10 @@ def main(
     
     dirs = []
     for env in envs:
-        env_key = f'env_{env}'
         trader_profiles = convert_environments(WW_trader_profiles.environments, WW_trader_profiles.profiles)
-        for key, simspec in WW_model_configs.environments[env_key].items():
+        for key, simspec in WW_model_configs.environments[env].items():
 
-            profiles = trader_profiles[env_key][key]
+            profiles = trader_profiles[env][key]
             for lat, profile in profiles.items():
                 role_counts = simspec['role_counts']
                 lat_spec = simspec.copy()
