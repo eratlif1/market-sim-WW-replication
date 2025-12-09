@@ -113,6 +113,7 @@ def main(
             other_trader_num = int(configuration.split('_')[2].split('A')[1])
             CDAnum = int(configuration.split('_')[1])
             delta = int(configuration.split('delta')[1])
+            env = configFolder.split('/')[-2].split('_')[-1]
         elif model == 'WWW':
             other_trader_num = int(configuration.split('MM')[-1])
             delta = 0
