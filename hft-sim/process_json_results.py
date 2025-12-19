@@ -50,6 +50,7 @@ spreadString = "spreads_mean_markets"
 spreadNbboString = "spreads_median_nbbo"
 timeString = "exectime_mean"
 tradeString = "trans_num"
+ziTradeString = "trans_zirpagent_num"
 laTradeString = "trans_laagent_num"
 bgSurplusString = "surplus_sum_no_disc"
 laProfitString = "profit_sum_hft"
@@ -79,6 +80,7 @@ col_to_json = {
     # "minShade": minShadeString,
     # "fracEstInSpread": fracString,
     'laTrades': laTradeString,
+    'ziTrades': ziTradeString,
     # "mmInventory": ,
     # "mmSpreadsEarned",
     # "mmSpreadProfit"
