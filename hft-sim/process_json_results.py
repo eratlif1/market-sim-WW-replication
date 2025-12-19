@@ -52,8 +52,9 @@ timeString = "exectime_mean"
 tradeString = "trans_num"
 ziTradeString = "trans_zirpagent_num"
 laTradeString = "trans_laagent_num"
-bgSurplusString = "surplus_sum_no_disc"
+bgSurplusString = "surplus_zirpagent_sum_no_disc"
 laProfitString = "profit_sum_hft"
+totalProfitString = "surplus_sum_no_disc"
 spreadIfDefinedString = "mean_median_spread_not_inf_nan"
 rmsString = "mean_rms_midquote_error_vs_estim_rt"
 minShadeString = "mean_min_shade_vs_estim_rt"
@@ -74,6 +75,7 @@ col_to_json = {
     # "welfare":, # BG + LA
     "bgSurplus": bgSurplusString,
     "laProfit": laProfitString,
+    "totalProfit": totalProfitString,
     "mmProfit": mmProfitString,
     "spreadIfDef": spreadIfDefinedString,
     # "midquoteRmsVsEst": rmsString,
