@@ -85,31 +85,33 @@ def main(
         for key, simspec in WW_model_configs.environments[env].items():
 
             profiles = trader_profiles[env][key]
-            for lat, profile in profiles.items():
-                role_counts = simspec['role_counts']
-                lat_spec = simspec.copy()
-                lat_spec['configuration']['nbboLatency'] = lat
+            print(f"PROFILES FOR {env}, {key}")
+            print(profiles)
+    #         for lat, profile in profiles.items():
+    #             role_counts = simspec['role_counts']
+    #             lat_spec = simspec.copy()
+    #             lat_spec['configuration']['nbboLatency'] = lat
 
-                # Create directory structure
-                # iterates from 0 to num_samples - 1
-                # e.g., if there are 100 samples, length 09-99 is 2
-                fmt = "%0" + str(len(str(num_samples - 1))) + "d"
-                dir = base_dir / env_key / f'CDA{lat_spec["configuration"]["CDA"]}_LA{lat_spec["role_counts"]["LA"]}_delta{lat}'
-                dirs.append(dir)
-                for i in range(num_samples):
-                    # example: sim_dir = /my_output_dir/02
-                    sample_str = fmt % i
-                    sim_dir = dir / sample_str
-                    sim_dir.mkdir(exist_ok=True, parents=True)
-                    lat_spec['assignment'] = sample_players(profile, role_counts, rng=rng)
-                    with open(path.join(sim_dir, 'simulation_spec.json'), 'w') as f:
-                        # write out object simspec to output stream f
-                        json.dump(lat_spec, f)
+    #             # Create directory structure
+    #             # iterates from 0 to num_samples - 1
+    #             # e.g., if there are 100 samples, length 09-99 is 2
+    #             fmt = "%0" + str(len(str(num_samples - 1))) + "d"
+    #             dir = base_dir / env_key / f'CDA{lat_spec["configuration"]["CDA"]}_LA{lat_spec["role_counts"]["LA"]}_delta{lat}'
+    #             dirs.append(dir)
+    #             for i in range(num_samples):
+    #                 # example: sim_dir = /my_output_dir/02
+    #                 sample_str = fmt % i
+    #                 sim_dir = dir / sample_str
+    #                 sim_dir.mkdir(exist_ok=True, parents=True)
+    #                 lat_spec['assignment'] = sample_players(profile, role_counts, rng=rng)
+    #                 with open(path.join(sim_dir, 'simulation_spec.json'), 'w') as f:
+    #                     # write out object simspec to output stream f
+    #                     json.dump(lat_spec, f)
     
-    print(f"{datetime.datetime.now()} Finished saving run configs in {base_dir}. Kicking off simulations now.")
-    for dir in dirs:
-        run_simulations(base_dir=dir, processes=processes, num_obs=num_obs,)
-    print(f"{datetime.datetime.now()} Finished simulations. Exiting.")
+    # print(f"{datetime.datetime.now()} Finished saving run configs in {base_dir}. Kicking off simulations now.")
+    # for dir in dirs:
+    #     run_simulations(base_dir=dir, processes=processes, num_obs=num_obs,)
+    # print(f"{datetime.datetime.now()} Finished simulations. Exiting.")
 
 # profile is a dict object
 # players is a list of how many players there are per role
