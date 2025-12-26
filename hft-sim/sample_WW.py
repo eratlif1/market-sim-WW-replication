@@ -113,9 +113,9 @@ def main(
                         json.dump(lat_spec, f)
     
     print(f"{datetime.datetime.now()} Finished saving run configs in {base_dir}. Kicking off simulations now.")
-    # for dir in dirs:
-    #     run_simulations(base_dir=dir, processes=processes, num_obs=num_obs,)
-    # print(f"{datetime.datetime.now()} Finished simulations. Exiting.")
+    for dir in dirs:
+        run_simulations(base_dir=dir, processes=processes, num_obs=num_obs,)
+    print(f"{datetime.datetime.now()} Finished simulations. Exiting.")
 
 # profile is a dict object
 # players is a list of how many players there are per role
