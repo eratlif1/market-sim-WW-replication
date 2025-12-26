@@ -85,8 +85,6 @@ def main(
         for key, simspec in WW_model_configs.environments[env].items():
 
             profiles = trader_profiles[env][key]
-            print(f"PROFILES FOR {env}, {key}")
-            print(profiles)
             for lat, profile in profiles.items():
                 role_counts = simspec['role_counts']
                 n_LA = role_counts.get('LA', 0)
